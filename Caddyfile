@@ -4,7 +4,8 @@ vilgotanl.edeby.net {
 	respond /hi "Hello, world!"
 
 	reverse_proxy :1234 localhost:1234 {
-		websocket
+		header_up Connection {http.request.header.Connection}
+		header_up Upgrade {http.request.header.Upgrade}
 		transparent
 	}
 }
