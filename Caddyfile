@@ -1,9 +1,9 @@
 vilgotanl.edeby.net {
-	reverse_proxy localhost:3000
+	reverse_proxy / localhost:3000
 
 	respond /hi "Hello, world!"
 
-	proxy :1234 localhost:1234 {
+	reverse_proxy :1234 localhost:1234 {
 		websocket
 		transparent
 	}
