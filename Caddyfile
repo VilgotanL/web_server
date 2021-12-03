@@ -2,6 +2,4 @@ vilgotanl.edeby.net {
 	reverse_proxy localhost:3000
 
 	respond /hi "Hello, world!"
-
-	reverse_proxy :1234 localhost:1234
 }
