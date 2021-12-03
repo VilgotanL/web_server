@@ -3,11 +3,5 @@ vilgotanl.edeby.net {
 
 	respond /hi "Hello, world!"
 
-	reverse_proxy /ws localhost:1234 {
-		header_up Connection {http.request.header.Connection}
-		header_up Upgrade {http.request.header.Upgrade}
-		header_up Host {host} 
-        header_up X-Real-IP {remote} 
-        header_up X-Forwarded-For {remote} 
-	}
+	reverse_proxy /ws localhost:1234
 }
