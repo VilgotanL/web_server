@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!-- yas -->
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Test</title>
+
+		<style>
+            * {
+                font-family: monospace;
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-size: 24px;
+            }
+            html, body {
+				width: 100%;
+				height: 100%;
+            }
+            body {
+                display: flex;
+                flex-direction: column;
+                padding: 25px;
+                background-color: lightgray;
+            }
+            #msgs {
+                flex-grow: 1;
+                overflow-y: scroll;
+            }
+            #msgs > div {
+                white-space: pre-wrap;
+                margin-bottom: 0.5em;
+            }
+            #input {
+                margin-top: 25px;
+            }
+		</style>
+	</head>
+    <body>
+		<div id="msgs"></div>
+		<input id="input" readonly placeholder="Connecting...">
+
+		<script>
+            const input = document.querySelector("#input");
+            const msgs = document.querySelector("#msgs");
+
+            let ws = new WebSocket("ws://localhost:1234");
+            let id = null;
+
+            ws.addEventListener("open", function() {
+                input.placeholder = "Waiting for id...";
+            });
+
+            let lastMsg = [null, null, null]; //[data, n, div]
+            ws.addEventListener("message", function({data}) {
+                if(!data.includes(" ")) {
+                    id = Number(data);
+                    input.placeholder = "Id "+id;
+                    input.removeAttribute("readonly");
+                } else {
+                    let atEnd = msgs.scrollTop === msgs.scrollHeight - msgs.clientHeight;
+                    
+                    if(lastMsg[0] !== null && data === lastMsg[0]) {
+                        lastMsg[1]++;
+                        lastMsg[2].innerText = `(${lastMsg[1]}x) ${lastMsg[0]}`;
+                    } else {
+                        let div = document.createElement("div");
+                        div.innerText = data;
+                        msgs.appendChild(div);
+                        lastMsg = [data, 1, div];
+                    }
+
+                    if(atEnd) msgs.scrollTop = msgs.scrollHeight;
+                }
+            });
+            ws.addEventListener("close", function(data) {
+                console.log("closed", data);
+                input.setAttribute("readonly", 1);
+                input.value = "";
+                input.placeholder = `Closed (http ${data.code})`;
+            });
+
+            input.addEventListener("keydown", function(e) {
+                if(e.key === "Enter") {
+                    let msg = input.value;
+                    input.value = "";
+
+                    ws.send(msg);
+                }
+            });
+		</script>
+    </body>
+</html>

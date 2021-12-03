@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!-- yas -->
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>VilgotanL's Website</title>
+
+        <link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+    <body>
+        <header>
+            <div>
+                <a href="index.html">Home</a>
+            </div>
+            <div>
+                <p>Docs</p>
+                <div class="header-dropdown">
+                    <a data-header-href="docs/bf.html">brainf**k</a>
+                </div>
+            </div>
+            <div>
+                <p>Interpreters</p>
+                <div class="header-dropdown">
+                    <a href="https://github.com/VilgotanL">Github</a>
+                    <a data-header-href="interpreters/bf/index.html">Rust Bf Interpreter</a>
+                </div>
+            </div>
+            <div>
+                <p>Useful Stuff</p>
+                <div class="header-dropdown">
+                    <a data-header-href="useful/asciitable.html">Ascii Table</a>
+                    <a href="https://youtu.be/dQw4w9WgXcQ">Totally not a Rick Roll</a>
+                </div>
+            </div>
+            <div>
+                <p>Playground</p>
+                <div class="header-dropdown">
+                    <a data-header-href="playground/apioform_counter.html">Apioform Counter</a>
+                </div>
+            </div>
+        </header>
+        <content>
+            <iframe id="iframe" src="main/about.html">
+
+            </iframe>
+        </content>
+        <footer>
+            by VilgotanL
+        </footer>
+
+        <script>
+            const linkEls = document.querySelectorAll("[data-header-href]");
+            const iframe = document.getElementById("iframe");
+
+            let searchParams = new URLSearchParams(window.location.search);
+            let searchSrc = searchParams.get("src");
+            if(searchSrc) iframe.src = searchSrc;
+
+            linkEls.forEach((el) => {
+                el.addEventListener("click", function() {
+                    let src = el.dataset.headerHref
+                    iframe.src = src;
+                    searchParams.set("src", src);
+                    window.location.search = searchParams.toString();
+                });
+            });
+        </script>
+    </body>
+</html>

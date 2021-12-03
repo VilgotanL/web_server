@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!-- yas -->
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>VilgotanL's Website</title>
+
+        <link rel="stylesheet" type="text/css" href="../doc_style.css">
+	</head>
+    <body>
+        <h1>Playground</h1>
+        <p>
+            Apioform Counter
+        </p>
+        <button id="btn">klik</button>
+        <p id="p">
+            0 apioforms ;(
+        </p>
+        <img src="../main/apioform.png">
+
+        <script>
+            const btn = document.getElementById("btn");
+            const p = document.getElementById("p");
+
+            let apioforms = 0;
+            btn.addEventListener("click", function() {
+                apioforms++;
+                switch(apioforms) {
+                    case 1:
+                        p.innerText = `${apioforms} apioform`;
+                        break;
+                    case 69:
+                        p.innerText = `${apioforms} apioforms (nice)`;
+                        break;
+                    case 420:
+                        p.innerText = `${apioforms} apioforms (noice)`;
+                        break;
+                    case 1000:
+                        p.innerText = `${apioforms} apioforms (why)`;
+                        break;
+                    default:
+                        p.innerText = `${apioforms} apioforms`;
+                        break;
+                }
+            });
+        </script>
+    </body>
+</html>

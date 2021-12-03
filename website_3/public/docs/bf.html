@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!-- yas -->
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>VilgotanL's Website</title>
+
+        <link rel="stylesheet" type="text/css" href="../doc_style.css">
+	</head>
+    <body>
+        <h1>brainf**k</h1>
+        <p>
+            Brainf**k is an esoteric programming language (esolang) where there are only 8 instructions all of which are a single character long,<br>
+            all other characters are comments and they are ignored.
+        </p>
+        <p>
+            In brainf**k there is a tape going right that consists of bytes that can hold numbers between 0 to 255, initially 0,<br>
+            there is also a pointer that starts on the leftmost cell of the tape.
+        </p>
+        <p>
+            0 0 0 0 0 ...<br>
+            ^
+        </p>
+        <p>
+            You can move the tape pointer left and right with &gt; and &lt;,<br>
+            and you can increment (+1) and decrement (-1) the current cell with + and -.<br>
+            When you increment past 255 the cell overflows back to 0, and vice-versa for decrementing.
+        </p>
+        <p>
+            You can print the current cell's value as an ascii character with the dot (.),<br>
+            and you can input an ascii character with the comma (,).
+        </p>
+        <p>
+            The two last instructions are [ and ], they combined act as a while-not-zero loop,<br>
+            [code] runs while the current cell is not zero.
+        </p>
+        <p>
+            Examples of []:<br>
+            [-] set the current cell to zero<br>
+            [->+&lt;] move the current cell's value to the next cell
+        </p>
+
+        <h2>Edge Cases</h2>
+        <p>
+            If the pointer goes left of the leftmost cell, the behaviour is undefined.<br>
+            If [ and ] are unbalanced or used in an invalid way, the behaviour is undefined.<br>
+            If the end of input (aka eof) is reached the most common thing for an implementation is to leave the cell as-is or set it to 0, some implementations set it to -1.
+        </p>
+        
+        <h2>Example Programs</h2>
+        <h3>Cat program</h3>
+        <p>
+            Prints the input<br>
+            ,[.,]
+        </p>
+
+        <a target="_parent" href="https://esolangs.org/wiki/Brainfuck">brainf**k on esolangs</a>
+    </body>
+</html>

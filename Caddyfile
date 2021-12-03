@@ -1,0 +1,3 @@
+vilgotanl.edeby.net {
+	reverse_proxy localhost:3000
+}
