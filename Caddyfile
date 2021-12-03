@@ -6,6 +6,5 @@ vilgotanl.edeby.net {
 	reverse_proxy :1234 localhost:1234 {
 		header_up Connection {http.request.header.Connection}
 		header_up Upgrade {http.request.header.Upgrade}
-		transparent
 	}
 }
