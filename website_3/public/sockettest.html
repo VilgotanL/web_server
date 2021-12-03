@@ -45,7 +45,7 @@
             const input = document.querySelector("#input");
             const msgs = document.querySelector("#msgs");
 
-            let ws = new WebSocket("wss://vilgotanl.edeby.net/ws");
+            let ws = new WebSocket("wss://vilgotanl.edeby.net:1234");
             let id = null;
 
             ws.addEventListener("open", function() {
