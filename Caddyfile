@@ -3,5 +3,9 @@ vilgotanl.edeby.net {
 
 	respond /hi "Hello, world!"
 
-	reverse_proxy /socket localhost:1234
+	reverse_proxy /socket localhost:1234 {
+		header_upstream Host {host} 
+        header_upstream X-Real-IP {remote} 
+        header_upstream X-Forwarded-For {remote} 
+	}
 }
